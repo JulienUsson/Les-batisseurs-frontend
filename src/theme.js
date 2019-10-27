@@ -4,7 +4,7 @@ import yellow from "@material-ui/core/colors/yellow";
 
 const theme = createMuiTheme({
   palette: {
-    primary: cyan,
+    primary: { ...cyan, contrastText: "#fff" },
     secondary: yellow
   }
 });
