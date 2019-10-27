@@ -5,7 +5,9 @@ import {
   Container,
   AppBar,
   Toolbar,
-  Typography
+  Typography,
+  IconButton,
+  Box
 } from "@material-ui/core";
 import {
   ThemeProvider,
@@ -14,6 +16,8 @@ import {
 } from "@material-ui/core/styles";
 import theme from "./theme";
 import Home from "./scenes/Home";
+import SettingsIcon from "@material-ui/icons/Settings";
+import SettingsDialog from "./components/SettingsDialog";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,12 +29,22 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function App() {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6">Les Bâtisseurs - Moyen-Âge</Typography>
+          <Box flex={1} />
+          <IconButton
+            aria-label="Configure backend url"
+            color="inherit"
+            onClick={() => setOpen(true)}
+          >
+            <SettingsIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Container maxWidth="md" className={classes.container}>
@@ -42,6 +56,7 @@ function App() {
           </Switch>
         </Router>
       </Container>
+      <SettingsDialog open={open} onClose={() => setOpen(false)} />
     </ThemeProvider>
   );
 }
