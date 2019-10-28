@@ -6,23 +6,20 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-
-const DEFAULT_BACKEND_URL = "http://localhost:3000";
+import * as api from "../services/api";
 
 function SettingsDialog({ open, onClose }) {
-  const [backendUrl, setbackendUrl] = React.useState(
-    localStorage.getItem("backend-url") || DEFAULT_BACKEND_URL
-  );
+  const [backendUrl, setbackendUrl] = React.useState(api.getBackendUrl());
 
   useEffect(() => {
     if (open) {
-      setbackendUrl(localStorage.getItem("backend-url") || DEFAULT_BACKEND_URL);
+      setbackendUrl(api.getBackendUrl());
     }
   }, [open]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    localStorage.setItem("backend-url", backendUrl);
+    api.setBackendUrl(backendUrl);
     onClose();
   }
 

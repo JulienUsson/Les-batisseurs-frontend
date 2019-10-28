@@ -18,6 +18,7 @@ import theme from "./theme";
 import Home from "./scenes/Home";
 import SettingsIcon from "@material-ui/icons/Settings";
 import SettingsDialog from "./components/SettingsDialog";
+import BackendStatusIndicator from "./components/BackendStatusIndicator";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -38,6 +39,7 @@ function App() {
         <Toolbar>
           <Typography variant="h6">Les Bâtisseurs - Moyen-Âge</Typography>
           <Box flex={1} />
+          <BackendStatusIndicator />
           <IconButton
             aria-label="Configure backend url"
             color="inherit"
@@ -56,6 +58,7 @@ function App() {
           </Switch>
         </Router>
       </Container>
+
       <SettingsDialog open={open} onClose={() => setOpen(false)} />
     </ThemeProvider>
   );
