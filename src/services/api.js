@@ -22,3 +22,7 @@ export async function getHealth() {
 export function findAllInProgressGame() {
   return Axios.get(`${getBackendUrl()}/games`, { done: true });
 }
+
+export function createGame(newGame) {
+  return Axios.post(`${getBackendUrl()}/games`, newGame);
+}

@@ -10,6 +10,7 @@ import {
 import * as api from "../services/api";
 import { makeStyles } from "@material-ui/styles";
 import AddIcon from "@material-ui/icons/Add";
+import CreateGameDialog from "../components/CreateGameDialog";
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 function Home() {
   const classes = useStyles();
   const [games, setGames] = useState([]);
+  const [openCreateGameDialog, setOpenCreateGameDialog] = React.useState(false);
 
   useEffect(() => {
     async function fetchGames() {
@@ -60,9 +62,17 @@ function Home() {
       ) : (
         <Typography variant="subtitle1">Aucune partie disponible</Typography>
       )}
-      <Fab className={classes.fab} color="secondary">
+      <Fab
+        className={classes.fab}
+        color="secondary"
+        onClick={() => setOpenCreateGameDialog(true)}
+      >
         <AddIcon />
       </Fab>
+      <CreateGameDialog
+        open={openCreateGameDialog}
+        onClose={() => setOpenCreateGameDialog(false)}
+      />
     </>
   );
 }

@@ -4,39 +4,52 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import * as api from "../services/api";
 
-function SettingsDialog({ open, onClose }) {
-  const [backendUrl, setbackendUrl] = React.useState(api.getBackendUrl());
+function CreateGameDialog({ open, onClose }) {
+  const [name, setName] = React.useState("");
+  const [numberOfPlayers, setNumberOfPlayers] = React.useState(2);
 
   useEffect(() => {
     if (open) {
-      setbackendUrl(api.getBackendUrl());
+      setName("");
+      setNumberOfPlayers(2);
     }
   }, [open]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    api.setBackendUrl(backendUrl);
+    api.createGame({ name, numberOfPlayers });
     onClose();
   }
 
   return (
     <Dialog fullWidth open={open} onClose={onClose}>
       <form onSubmit={handleSubmit}>
-        <DialogTitle id="settings-dialog-title">Configuration</DialogTitle>
+        <DialogTitle id="create-game-dialog-title">
+          Créer une nouvelle partie
+        </DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
-            margin="dense"
-            id="backend-url"
-            label="Adresse URL du backend"
+            label="Nom de la partie"
             type="text"
-            defaultValue={backendUrl}
-            onChange={e => setbackendUrl(e.currentTarget.value)}
+            margin="normal"
+            defaultValue={name}
+            onChange={e => setName(e.currentTarget.value)}
             fullWidth
+            required
+          />
+          <TextField
+            label="Nombre de joueurs"
+            type="number"
+            margin="normal"
+            defaultValue={numberOfPlayers}
+            onChange={e => setNumberOfPlayers(e.currentTarget.value)}
+            fullWidth
+            min={2}
+            max={4}
             required
           />
         </DialogContent>
@@ -53,4 +66,4 @@ function SettingsDialog({ open, onClose }) {
   );
 }
 
-export default SettingsDialog;
+export default CreateGameDialog;

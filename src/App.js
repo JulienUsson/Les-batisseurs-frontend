@@ -33,7 +33,9 @@ function App() {
         <Toolbar>
           <Typography variant="h6">Les Bâtisseurs - Moyen-Âge</Typography>
           <Box flex={1} />
-          <BackendStatusIndicator />
+          <Box mr={2}>
+            <BackendStatusIndicator />
+          </Box>
           <IconButton
             aria-label="Configure backend url"
             color="inherit"
