@@ -20,6 +20,7 @@ import Home from "./scenes/Home";
 import SettingsIcon from "@material-ui/icons/Settings";
 import SettingsDialog from "./components/SettingsDialog";
 import BackendStatusIndicator from "./components/BackendStatusIndicator";
+import Game from "./scenes/Game";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -60,6 +61,9 @@ function App() {
           <Switch>
             <Route path="/" exact>
               <Home />
+            </Route>
+            <Route path="/games/:id/:player" exact>
+              <Game />
             </Route>
             <Redirect to="/" />
           </Switch>
