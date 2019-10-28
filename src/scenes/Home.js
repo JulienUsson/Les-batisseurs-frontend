@@ -11,6 +11,7 @@ import * as api from "../services/api";
 import { makeStyles } from "@material-ui/styles";
 import AddIcon from "@material-ui/icons/Add";
 import CreateGameDialog from "../components/CreateGameDialog";
+import ChoosePlayerDialog from "../components/ChoosePlayerDialog";
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -24,6 +25,9 @@ function Home() {
   const classes = useStyles();
   const [games, setGames] = useState([]);
   const [openCreateGameDialog, setOpenCreateGameDialog] = React.useState(false);
+  const [openChoosePlayerDialog, setOpenChoosePlayerDialog] = React.useState(
+    false
+  );
 
   useEffect(() => {
     async function fetchGames() {
@@ -53,7 +57,7 @@ function Home() {
         <Paper>
           <List>
             {games.map(game => (
-              <ListItem button>
+              <ListItem button onClick={() => setOpenChoosePlayerDialog(game)}>
                 <ListItemText primary={game.name} />
               </ListItem>
             ))}
@@ -72,6 +76,10 @@ function Home() {
       <CreateGameDialog
         open={openCreateGameDialog}
         onClose={() => setOpenCreateGameDialog(false)}
+      />
+      <ChoosePlayerDialog
+        open={openChoosePlayerDialog}
+        onClose={() => setOpenChoosePlayerDialog(false)}
       />
     </>
   );

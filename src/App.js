@@ -22,6 +22,11 @@ import SettingsDialog from "./components/SettingsDialog";
 import BackendStatusIndicator from "./components/BackendStatusIndicator";
 
 const useStyles = makeStyles(theme => ({
+  "@global": {
+    a: {
+      textDecoration: "none"
+    }
+  },
   container: {
     marginTop: theme.spacing(4)
   }
