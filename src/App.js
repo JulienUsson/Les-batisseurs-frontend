@@ -9,24 +9,18 @@ import {
   IconButton,
   Box
 } from "@material-ui/core";
-import {
-  ThemeProvider,
-  makeStyles,
-  createStyles
-} from "@material-ui/core/styles";
+import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import theme from "./theme";
 import Home from "./scenes/Home";
 import SettingsIcon from "@material-ui/icons/Settings";
 import SettingsDialog from "./components/SettingsDialog";
 import BackendStatusIndicator from "./components/BackendStatusIndicator";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      marginTop: theme.spacing(4)
-    }
-  })
-);
+const useStyles = makeStyles(theme => ({
+  container: {
+    marginTop: theme.spacing(4)
+  }
+}));
 
 function App() {
   const classes = useStyles();

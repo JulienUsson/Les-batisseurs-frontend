@@ -4,11 +4,23 @@ import {
   ListItem,
   ListItemText,
   Paper,
-  Typography
+  Typography,
+  Fab
 } from "@material-ui/core";
 import * as api from "../services/api";
+import { makeStyles } from "@material-ui/styles";
+import AddIcon from "@material-ui/icons/Add";
+
+const useStyles = makeStyles(theme => ({
+  fab: {
+    position: "fixed",
+    bottom: theme.spacing(4),
+    right: theme.spacing(4)
+  }
+}));
 
 function Home() {
+  const classes = useStyles();
   const [games, setGames] = useState([]);
 
   useEffect(() => {
@@ -48,6 +60,9 @@ function Home() {
       ) : (
         <Typography variant="subtitle1">Aucune partie disponible</Typography>
       )}
+      <Fab className={classes.fab} color="secondary">
+        <AddIcon />
+      </Fab>
     </>
   );
 }
