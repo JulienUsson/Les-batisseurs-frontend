@@ -18,3 +18,11 @@ export async function getHealth() {
     return false;
   }
 }
+
+export function findAllInProgressGame() {
+  return Axios.get(`${getBackendUrl()}/games`, { done: true });
+}
+
+export function createGame(newGame) {
+  return Axios.post(`${getBackendUrl()}/games`, newGame);
+}

@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import {
   CssBaseline,
   Container,
@@ -9,24 +14,23 @@ import {
   IconButton,
   Box
 } from "@material-ui/core";
-import {
-  ThemeProvider,
-  makeStyles,
-  createStyles
-} from "@material-ui/core/styles";
+import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
 import theme from "./theme";
 import Home from "./scenes/Home";
 import SettingsIcon from "@material-ui/icons/Settings";
 import SettingsDialog from "./components/SettingsDialog";
 import BackendStatusIndicator from "./components/BackendStatusIndicator";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      marginTop: theme.spacing(4)
+const useStyles = makeStyles(theme => ({
+  "@global": {
+    a: {
+      textDecoration: "none"
     }
-  })
-);
+  },
+  container: {
+    marginTop: theme.spacing(4)
+  }
+}));
 
 function App() {
   const classes = useStyles();
@@ -39,7 +43,9 @@ function App() {
         <Toolbar>
           <Typography variant="h6">Les Bâtisseurs - Moyen-Âge</Typography>
           <Box flex={1} />
-          <BackendStatusIndicator />
+          <Box mr={2}>
+            <BackendStatusIndicator />
+          </Box>
           <IconButton
             aria-label="Configure backend url"
             color="inherit"
@@ -52,9 +58,10 @@ function App() {
       <Container maxWidth="md" className={classes.container}>
         <Router>
           <Switch>
-            <Route path="/">
+            <Route path="/" exact>
               <Home />
             </Route>
+            <Redirect to="/" />
           </Switch>
         </Router>
       </Container>
