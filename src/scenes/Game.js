@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Player from "../components/Player";
 import Worker from "../components/Worker";
 import Building from "../components/Building";
+import Deck from "../components/Deck";
 
 const useStyles = makeStyles(theme => ({}));
 
@@ -54,19 +55,24 @@ function Game() {
 
   return (
     <>
-      <Typography variant="h4" gutterBottom>
-        Joueur {player} - {name}
-      </Typography>
-      Ouvriers restant {remainingWorkers}
-      {workers.map(worker => (
-        <Worker key={worker.id} {...worker} />
-      ))}
-      <Worker {...nextWorker} />
-      Bâtiments restant {remainingBuildings}
-      {buildings.map(building => (
-        <Building key={building.id} {...building} />
-      ))}
-      <Building {...nextBuilding} />
+      <Deck
+        title="Ouvriers"
+        remainingCards={remainingWorkers}
+        next={<Worker {...nextWorker} />}
+      >
+        {workers.map(worker => (
+          <Worker key={worker.id} {...worker} />
+        ))}
+      </Deck>
+      <Deck
+        title="Bâtiments"
+        remainingCards={remainingBuildings}
+        next={<Building disabled {...nextBuilding} />}
+      >
+        {buildings.map(building => (
+          <Building key={building.id} {...building} />
+        ))}
+      </Deck>
       {players.map(player => (
         <Player
           key={player.id}

@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
+import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 
 const useStyles = makeStyles(theme => ({}));
 
@@ -25,6 +26,7 @@ function Building({
 
   return (
     <div>
+      <AccountBalanceIcon />
       Pierre: {stone} Bois: {wood} Savoir: {knowledge} Tuile: {tile}
       Ecus: {reward} Point de victoire: {victoryPoint}
     </div>
