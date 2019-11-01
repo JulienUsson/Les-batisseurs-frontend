@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Typography, CircularProgress, Box } from "@material-ui/core";
+import { CircularProgress, Box } from "@material-ui/core";
 import * as api from "../services/api";
-import { makeStyles } from "@material-ui/styles";
 import { useParams } from "react-router-dom";
 import Player from "../components/Player";
 import Worker from "../components/Worker";
 import Building from "../components/Building";
 import Deck from "../components/Deck";
 
-const useStyles = makeStyles(theme => ({}));
-
 function Game() {
-  const classes = useStyles();
-  let { id, player } = useParams();
+  let { id, playerId } = useParams();
   const [game, setGame] = useState(null);
 
   useEffect(() => {
@@ -31,7 +27,7 @@ function Game() {
     return () => {
       clearInterval(intervalId);
     };
-  }, []);
+  }, [id]);
 
   if (!game) {
     return (
@@ -42,7 +38,6 @@ function Game() {
   }
 
   const {
-    name,
     remainingWorkers,
     workers,
     nextWorker,
@@ -73,13 +68,16 @@ function Game() {
           <Building key={building.id} {...building} />
         ))}
       </Deck>
-      {players.map(player => (
-        <Player
-          key={player.id}
-          current={currentPlayer === player.id}
-          {...player}
-        />
-      ))}
+      {players.map(player => {
+        return (
+          <Player
+            key={player.id}
+            isYou={Number(playerId) === player.id}
+            isCurrent={currentPlayer === player.id}
+            {...player}
+          />
+        );
+      })}
     </>
   );
 }

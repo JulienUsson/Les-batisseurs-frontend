@@ -62,7 +62,7 @@ function App() {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/games/:id/:player" exact>
+            <Route path="/games/:id/:playerId" exact>
               <Game />
             </Route>
             <Redirect to="/" />
