@@ -23,6 +23,10 @@ export function findAllInProgressGame() {
   return Axios.get(`${getBackendUrl()}/games`, { done: true });
 }
 
+export function findGameById(id) {
+  return Axios.get(`${getBackendUrl()}/games/${id}`);
+}
+
 export function createGame(newGame) {
   return Axios.post(`${getBackendUrl()}/games`, newGame);
 }
