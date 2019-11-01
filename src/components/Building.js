@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import { Typography, Box, Paper, Tooltip } from "@material-ui/core";
+import clsx from "clsx";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -67,6 +68,13 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     top: 0,
     borderBottomRightRadius: theme.shape.borderRadius
+  },
+  produced: {
+    position: "absolute",
+    margin: "auto",
+    top: 0,
+    borderBottomLeftRadius: theme.shape.borderRadius,
+    borderBottomRightRadius: theme.shape.borderRadius
   }
 }));
 
@@ -116,9 +124,25 @@ function Building({
             <Typography variant="h6">{victoryPoint}</Typography>
           </Box>
         </Tooltip>
-        <Box display="flex" flexGrow={1} alignItems="center">
-          <AccountBalanceIcon className={classes.buildingIcon} />
-        </Box>
+        {isEngine && (
+          <Tooltip title="Ressource produite">
+            <Box
+              className={clsx(
+                { [classes.wood]: woodProduced > 0 },
+                { [classes.stone]: stoneProduced > 0 },
+                { [classes.knowledge]: knowledgeProduced > 0 },
+                { [classes.tile]: tileProduced > 0 },
+                classes.produced
+              )}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Typography variant="h6">{victoryPoint}</Typography>
+            </Box>
+          </Tooltip>
+        )}
         <Tooltip title="Ecus">
           <Box
             className={classes.coin}
@@ -130,6 +154,9 @@ function Building({
             <Typography variant="h6">{reward}</Typography>
           </Box>
         </Tooltip>
+        <Box display="flex" flexGrow={1} alignItems="center">
+          <AccountBalanceIcon className={classes.buildingIcon} />
+        </Box>
         <Box display="flex" flexDirection="row">
           <Tooltip title="Bois">
             <Box
