@@ -1,8 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
-import { Typography, Box, Paper } from "@material-ui/core";
-import clsx from "clsx";
+import { Typography, Box, Paper, Tooltip } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -10,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     overflow: "hidden",
     height: 176,
-    width: 200
+    width: 176
   },
   disabled: {
     position: "absolute",
@@ -28,27 +27,42 @@ const useStyles = makeStyles(theme => ({
   wood: {
     backgroundColor: theme.palette.wood,
     color: theme.palette.common.white,
-    padding: theme.spacing(1)
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2)
   },
   stone: {
     backgroundColor: theme.palette.stone,
     color: theme.palette.common.white,
-    padding: theme.spacing(1)
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2)
   },
   knowledge: {
     backgroundColor: theme.palette.knowledge,
     color: theme.palette.common.white,
-    padding: theme.spacing(1)
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2)
   },
   tile: {
     backgroundColor: theme.palette.tile,
     color: theme.palette.common.white,
-    padding: theme.spacing(1)
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2)
   },
   coin: {
     backgroundColor: theme.palette.coin,
     color: theme.palette.common.white,
-    padding: theme.spacing(1),
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
     position: "absolute",
     right: 0,
     top: 0,
@@ -63,14 +77,17 @@ function Worker({
   wood,
   knowledge,
   tile,
-  className,
-  ...props
+  disabledTitle
 }) {
   const classes = useStyles();
 
   return (
-    <Paper {...props} className={clsx(classes.root, className)}>
-      {disabled && <div className={classes.disabled} />}
+    <Paper className={classes.root}>
+      {disabled && (
+        <Tooltip title={disabledTitle}>
+          <div className={classes.disabled} />
+        </Tooltip>
+      )}
       <Box
         display="flex"
         flexDirection="column"
@@ -80,56 +97,59 @@ function Worker({
         <Box display="flex" flexGrow={1} alignItems="center">
           <EmojiPeopleIcon className={classes.workerIcon} />
         </Box>
-        <Box
-          className={classes.coin}
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-        >
-          <Typography variant="button">{price}</Typography>
-          <Typography variant="body2">Ecus</Typography>
-        </Box>
+        <Tooltip title="Ecus">
+          <Box
+            className={classes.coin}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+          >
+            <Typography variant="h6">{price}</Typography>
+          </Box>
+        </Tooltip>
         <Box display="flex" flexDirection="row">
-          <Box
-            className={classes.wood}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-          >
-            <Typography variant="button" color="inherit">
-              {wood}
-            </Typography>
-            <Typography variant="body2" color="inherit">
-              Bois
-            </Typography>
-          </Box>
-          <Box
-            className={classes.stone}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-          >
-            <Typography variant="button">{stone}</Typography>
-            <Typography variant="body2">Pierre</Typography>
-          </Box>
-          <Box
-            className={classes.knowledge}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-          >
-            <Typography variant="button">{knowledge}</Typography>
-            <Typography variant="body2">Savoir</Typography>
-          </Box>
-          <Box
-            className={classes.tile}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-          >
-            <Typography variant="button">{tile}</Typography>
-            <Typography variant="body2">Tuile</Typography>
-          </Box>
+          <Tooltip title="Bois">
+            <Box
+              className={classes.wood}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+            >
+              <Typography variant="h6" color="inherit">
+                {wood}
+              </Typography>
+            </Box>
+          </Tooltip>
+          <Tooltip title="Pierre">
+            <Box
+              className={classes.stone}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+            >
+              <Typography variant="h6">{stone}</Typography>
+            </Box>
+          </Tooltip>
+          <Tooltip title="Savoir">
+            <Box
+              className={classes.knowledge}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+            >
+              <Typography variant="h6">{knowledge}</Typography>
+            </Box>
+          </Tooltip>
+          <Tooltip title="Tuile">
+            <Box
+              className={classes.tile}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+            >
+              <Typography variant="h6">{tile}</Typography>
+            </Box>
+          </Tooltip>
         </Box>
       </Box>
     </Paper>

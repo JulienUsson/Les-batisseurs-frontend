@@ -10,7 +10,10 @@ function Deck({ title, remainingCards, next, children }) {
         </Typography>
       </Box>
       <Box display="flex" flexDirection="row" flexWrap="wrap">
-        {React.cloneElement(next, { disabled: true, title: "Carte suivante" })}
+        {React.cloneElement(next, {
+          disabled: true,
+          disabledTitle: "Carte suivante"
+        })}
         {children}
       </Box>
     </Box>
