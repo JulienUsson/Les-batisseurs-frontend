@@ -15,8 +15,8 @@ const theme = createMuiTheme({
     stone: grey[500],
     knowledge: blue[500],
     tile: red[500],
-    coin: yellow[700],
-    victoryPoint: purple[700]
+    coin: yellow[800],
+    victoryPoint: purple[500]
   }
 });
 

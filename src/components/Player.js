@@ -5,6 +5,13 @@ import Worker from "./Worker";
 import { Box, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
+  current: {
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: theme.palette.secondary[50],
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    boxShadow: theme.shadows[1]
+  },
   coin: {
     color: theme.palette.coin
   }
@@ -24,7 +31,7 @@ function Player({
   const classes = useStyles();
 
   return (
-    <Box mt={4} mb={4}>
+    <Box className={isCurrent && classes.current} mt={2} mb={2} pt={2} pb={2}>
       <Box display="flex" flexDirection="row" alignItems="center" mb={2}>
         <Typography variant="h5">
           Joueur {id} {isYou && "(c'est toi !)"}
@@ -35,7 +42,9 @@ function Player({
         </Typography>
       </Box>
       {availableWorkers.length > 0 && (
-        <Typography variant="subtitle1">Ouvriers disponibles</Typography>
+        <Typography variant="subtitle1">
+          Ouvriers disponibles ({availableWorkers.length})
+        </Typography>
       )}
       <Box display="flex" flexDirection="row" flexWrap="wrap">
         {availableWorkers.map(worker => (
@@ -43,7 +52,9 @@ function Player({
         ))}
       </Box>
       {underConstructionBuildings.length > 0 && (
-        <Typography variant="subtitle1">Bâtiments en construction</Typography>
+        <Typography variant="subtitle1">
+          Bâtiments en construction ({underConstructionBuildings.length})
+        </Typography>
       )}
       <Box display="flex" flexDirection="row" flexWrap="wrap">
         {underConstructionBuildings.map(building => (
@@ -51,7 +62,9 @@ function Player({
         ))}
       </Box>
       {finishedBuildings.length > 0 && (
-        <Typography variant="subtitle1">Bâtiments terminés</Typography>
+        <Typography variant="subtitle1">
+          Bâtiments terminés ({finishedBuildings.length})
+        </Typography>
       )}
       <Box display="flex" flexDirection="row" flexWrap="wrap">
         {finishedBuildings.map(building => (
