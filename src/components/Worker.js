@@ -8,8 +8,8 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     margin: theme.spacing(1),
     overflow: "hidden",
-    height: 176,
-    width: 176
+    height: 200,
+    width: 160
   },
   disabled: {
     position: "absolute",
@@ -27,42 +27,32 @@ const useStyles = makeStyles(theme => ({
   wood: {
     backgroundColor: theme.palette.wood,
     color: theme.palette.common.white,
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2)
+    height: theme.spacing(5),
+    width: theme.spacing(5)
   },
   stone: {
     backgroundColor: theme.palette.stone,
     color: theme.palette.common.white,
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2)
+    height: theme.spacing(5),
+    width: theme.spacing(5)
   },
   knowledge: {
     backgroundColor: theme.palette.knowledge,
     color: theme.palette.common.white,
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2)
+    height: theme.spacing(5),
+    width: theme.spacing(5)
   },
   tile: {
     backgroundColor: theme.palette.tile,
     color: theme.palette.common.white,
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2)
+    height: theme.spacing(5),
+    width: theme.spacing(5)
   },
   coin: {
     backgroundColor: theme.palette.coin,
     color: theme.palette.common.white,
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+    height: theme.spacing(5),
+    width: theme.spacing(5),
     position: "absolute",
     right: 0,
     top: 0,
@@ -103,6 +93,7 @@ function Worker({
             display="flex"
             flexDirection="column"
             alignItems="center"
+            justifyContent="center"
           >
             <Typography variant="h6">{price}</Typography>
           </Box>
@@ -114,6 +105,7 @@ function Worker({
               display="flex"
               flexDirection="column"
               alignItems="center"
+              justifyContent="center"
             >
               <Typography variant="h6" color="inherit">
                 {wood}
@@ -126,6 +118,7 @@ function Worker({
               display="flex"
               flexDirection="column"
               alignItems="center"
+              justifyContent="center"
             >
               <Typography variant="h6">{stone}</Typography>
             </Box>
@@ -136,6 +129,7 @@ function Worker({
               display="flex"
               flexDirection="column"
               alignItems="center"
+              justifyContent="center"
             >
               <Typography variant="h6">{knowledge}</Typography>
             </Box>
@@ -146,6 +140,7 @@ function Worker({
               display="flex"
               flexDirection="column"
               alignItems="center"
+              justifyContent="center"
             >
               <Typography variant="h6">{tile}</Typography>
             </Box>

@@ -1,10 +1,78 @@
 import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import { Typography, Box, Paper, Tooltip } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({}));
+const useStyles = makeStyles(theme => ({
+  root: {
+    position: "relative",
+    margin: theme.spacing(1),
+    overflow: "hidden",
+    height: 200,
+    width: 160
+  },
+  disabled: {
+    position: "absolute",
+    backgroundColor: theme.palette.action.disabled,
+    zIndex: 100,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0
+  },
+  buildingIcon: {
+    fontSize: 80,
+    color: theme.palette.grey[700]
+  },
+  wood: {
+    backgroundColor: theme.palette.wood,
+    color: theme.palette.common.white,
+    height: theme.spacing(5),
+    width: theme.spacing(5)
+  },
+  stone: {
+    backgroundColor: theme.palette.stone,
+    color: theme.palette.common.white,
+    height: theme.spacing(5),
+    width: theme.spacing(5)
+  },
+  knowledge: {
+    backgroundColor: theme.palette.knowledge,
+    color: theme.palette.common.white,
+    height: theme.spacing(5),
+    width: theme.spacing(5)
+  },
+  tile: {
+    backgroundColor: theme.palette.tile,
+    color: theme.palette.common.white,
+    height: theme.spacing(5),
+    width: theme.spacing(5)
+  },
+  coin: {
+    backgroundColor: theme.palette.coin,
+    color: theme.palette.common.white,
+    height: theme.spacing(5),
+    width: theme.spacing(5),
+    position: "absolute",
+    right: 0,
+    top: 0,
+    borderBottomLeftRadius: theme.shape.borderRadius
+  },
+  victoryPoint: {
+    backgroundColor: theme.palette.victoryPoint,
+    color: theme.palette.common.white,
+    height: theme.spacing(5),
+    width: theme.spacing(5),
+    position: "absolute",
+    left: 0,
+    top: 0,
+    borderBottomRightRadius: theme.shape.borderRadius
+  }
+}));
 
 function Building({
+  disabled,
+  disabledTitle,
   reward,
   victoryPoint,
   stone,
@@ -25,11 +93,93 @@ function Building({
     tileProduced > 0;
 
   return (
-    <div>
-      <AccountBalanceIcon />
-      Pierre: {stone} Bois: {wood} Savoir: {knowledge} Tuile: {tile}
-      Ecus: {reward} Point de victoire: {victoryPoint}
-    </div>
+    <Paper className={classes.root}>
+      {disabled && (
+        <Tooltip title={disabledTitle}>
+          <div className={classes.disabled} />
+        </Tooltip>
+      )}
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        height="100%"
+      >
+        <Tooltip title="Points de victoire">
+          <Box
+            className={classes.victoryPoint}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Typography variant="h6">{victoryPoint}</Typography>
+          </Box>
+        </Tooltip>
+        <Box display="flex" flexGrow={1} alignItems="center">
+          <AccountBalanceIcon className={classes.buildingIcon} />
+        </Box>
+        <Tooltip title="Ecus">
+          <Box
+            className={classes.coin}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Typography variant="h6">{reward}</Typography>
+          </Box>
+        </Tooltip>
+        <Box display="flex" flexDirection="row">
+          <Tooltip title="Bois">
+            <Box
+              className={classes.wood}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Typography variant="h6" color="inherit">
+                {wood}
+              </Typography>
+            </Box>
+          </Tooltip>
+          <Tooltip title="Pierre">
+            <Box
+              className={classes.stone}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Typography variant="h6">{stone}</Typography>
+            </Box>
+          </Tooltip>
+          <Tooltip title="Savoir">
+            <Box
+              className={classes.knowledge}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Typography variant="h6">{knowledge}</Typography>
+            </Box>
+          </Tooltip>
+          <Tooltip title="Tuile">
+            <Box
+              className={classes.tile}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Typography variant="h6">{tile}</Typography>
+            </Box>
+          </Tooltip>
+        </Box>
+      </Box>
+    </Paper>
   );
 }
 
