@@ -37,6 +37,10 @@ function Player({
           Joueur {id} {isYou && "(c'est toi !)"}
         </Typography>
         <Box flex={1} />
+        {isCurrent && (
+          <Typography variant="h6">{actions} actions restantes</Typography>
+        )}
+        <Box flex={1} />
         <Typography className={classes.coin} variant="h6">
           {money} écus
         </Typography>
