@@ -11,15 +11,6 @@ const useStyles = makeStyles(theme => ({
     height: 200,
     width: 160
   },
-  disabled: {
-    position: "absolute",
-    backgroundColor: theme.palette.action.disabled,
-    zIndex: 100,
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
-  },
   workerIcon: {
     fontSize: 80,
     color: theme.palette.grey[700]
@@ -60,24 +51,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Worker({
-  disabled,
-  price,
-  stone,
-  wood,
-  knowledge,
-  tile,
-  disabledTitle
-}) {
+function Worker({ price, stone, wood, knowledge, tile }) {
   const classes = useStyles();
 
   return (
     <Paper className={classes.root}>
-      {disabled && (
-        <Tooltip title={disabledTitle}>
-          <div className={classes.disabled} />
-        </Tooltip>
-      )}
       <Box
         display="flex"
         flexDirection="column"
