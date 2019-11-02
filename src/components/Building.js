@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme => ({
     height: 200,
     width: 160
   },
+  clickable: {
+    cursor: "pointer"
+  },
   buildingIcon: {
     fontSize: 80,
     color: theme.palette.grey[700]
@@ -66,6 +69,9 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     borderBottomLeftRadius: theme.shape.borderRadius,
     borderBottomRightRadius: theme.shape.borderRadius
+  },
+  active: {
+    backgroundColor: theme.palette.secondary[300]
   }
 }));
 
@@ -80,7 +86,8 @@ function Building({
   woodProduced,
   knowledgeProduced,
   tileProduced,
-  done
+  onClick,
+  active
 }) {
   const classes = useStyles();
   const isEngine =
@@ -90,7 +97,13 @@ function Building({
     tileProduced > 0;
 
   return (
-    <Paper className={classes.root}>
+    <Paper
+      className={clsx(classes.root, {
+        [classes.active]: active,
+        [classes.clickable]: onClick
+      })}
+      onClick={onClick}
+    >
       <Box
         display="flex"
         flexDirection="column"
