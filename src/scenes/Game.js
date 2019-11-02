@@ -20,7 +20,9 @@ const useStyles = makeStyles(theme => ({
 
 function Game() {
   const classes = useStyles();
-  let { id, playerId } = useParams();
+  const params = useParams();
+  const id = params.id;
+  const playerId = Number(params.playerId);
   const [open, setOpen] = React.useState(false);
   const [game, setGame] = useState(null);
 
@@ -60,7 +62,6 @@ function Game() {
     players,
     currentPlayer
   } = game;
-
   return (
     <>
       <Deck
@@ -85,7 +86,7 @@ function Game() {
         return (
           <Player
             key={player.id}
-            isYou={Number(playerId) === player.id}
+            isYou={playerId === player.id}
             isCurrent={currentPlayer === player.id}
             {...player}
           />
@@ -95,10 +96,16 @@ function Game() {
         color="secondary"
         className={classes.fab}
         onClick={() => setOpen(true)}
+        disabled={currentPlayer !== playerId}
       >
         <PlayArrowIcon />
       </Fab>
-      <ActionDialog open={open} onClose={() => setOpen(false)} game={game} />
+      <ActionDialog
+        open={open}
+        onClose={() => setOpen(false)}
+        game={game}
+        playerId={playerId}
+      />
     </>
   );
 }
