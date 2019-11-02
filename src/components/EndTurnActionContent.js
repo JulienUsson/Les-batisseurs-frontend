@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import * as api from "../services/api";
+import ErrorContext from "../contexts/ErrorContext";
 
 function EndTurnActionContent({ onClose, gameId, playerId }) {
-  function handleSubmit(e) {
+  const showError = useContext(ErrorContext);
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    api.playAction(gameId, playerId, { type: "END_TURN" });
+    try {
+      await api.playAction(gameId, playerId, { type: "END_TURN" });
+    } catch (e) {
+      showError("Impossible d'effectuer cette action");
+    }
     onClose();
   }
 
@@ -19,7 +26,7 @@ function EndTurnActionContent({ onClose, gameId, playerId }) {
           <Button onClick={onClose} color="primary">
             Annuler
           </Button>
-          <Button type="submit" color="second">
+          <Button type="submit" color="primary">
             Valider
           </Button>
         </DialogActions>
