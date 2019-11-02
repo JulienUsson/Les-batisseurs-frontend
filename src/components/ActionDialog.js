@@ -6,8 +6,15 @@ import EndTurnActionContent from "./EndTurnActionContent";
 function ActionDialog({ open, onClose, game, playerId }) {
   const [type, setType] = useState();
 
+  function handleClose() {
+    onClose();
+    setTimeout(() => {
+      setType();
+    }, 300);
+  }
+
   return (
-    <Dialog fullWidth open={open} onClose={onClose}>
+    <Dialog fullWidth open={open} onClose={handleClose}>
       {(function() {
         switch (type) {
           case "TAKE_BUILDING":
@@ -23,7 +30,7 @@ function ActionDialog({ open, onClose, game, playerId }) {
           case "END_TURN":
             return (
               <EndTurnActionContent
-                onClose={onClose}
+                onClose={handleClose}
                 gameId={game.id}
                 playerId={playerId}
               />
