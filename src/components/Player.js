@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/styles";
 import Building from "./Building";
 import Worker from "./Worker";
 import { Box, Typography } from "@material-ui/core";
+import clsx from "clsx";
 
 const useStyles = makeStyles(theme => ({
   current: {
@@ -31,7 +32,13 @@ function Player({
   const classes = useStyles();
 
   return (
-    <Box className={isCurrent && classes.current} mt={2} mb={2} pt={2} pb={2}>
+    <Box
+      className={clsx({ [classes.current]: isCurrent })}
+      mt={2}
+      mb={2}
+      pt={2}
+      pb={2}
+    >
       <Box display="flex" flexDirection="row" alignItems="center" mb={2}>
         <Typography variant="h5">
           Joueur {id} {isYou && "(c'est toi !)"}

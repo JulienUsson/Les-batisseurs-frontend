@@ -4,6 +4,7 @@ import SelectActionContent from "./SelectActionContent";
 import EndTurnActionContent from "./EndTurnActionContent";
 import BuyActionActionContent from "./BuyActionActionContent";
 import TakeMoneyActionContent from "./TakeMoneyActionContent";
+import TakeBuildingActionContent from "./TakeBuildingActionContent";
 
 function ActionDialog({ open, onClose, game, playerId }) {
   const [type, setType] = useState();
@@ -20,7 +21,14 @@ function ActionDialog({ open, onClose, game, playerId }) {
       {(function() {
         switch (type) {
           case "TAKE_BUILDING":
-            return null;
+            return (
+              <TakeBuildingActionContent
+                onClose={handleClose}
+                gameId={game.id}
+                buildings={game.buildings}
+                playerId={playerId}
+              />
+            );
           case "TAKE_WORKER":
             return null;
           case "SEND_WORKER":
