@@ -3,6 +3,7 @@ import Dialog from "@material-ui/core/Dialog";
 import SelectActionContent from "./SelectActionContent";
 import EndTurnActionContent from "./EndTurnActionContent";
 import BuyActionActionContent from "./BuyActionActionContent";
+import TakeMoneyActionContent from "./TakeMoneyActionContent";
 
 function ActionDialog({ open, onClose, game, playerId }) {
   const [type, setType] = useState();
@@ -25,7 +26,13 @@ function ActionDialog({ open, onClose, game, playerId }) {
           case "SEND_WORKER":
             return null;
           case "TAKE_MONEY":
-            return null;
+            return (
+              <TakeMoneyActionContent
+                onClose={handleClose}
+                gameId={game.id}
+                playerId={playerId}
+              />
+            );
           case "BUY_ACTION":
             return (
               <BuyActionActionContent

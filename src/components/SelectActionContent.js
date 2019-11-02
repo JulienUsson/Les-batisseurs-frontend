@@ -22,7 +22,7 @@ function SelectActionContent({ onActionSelect }) {
           <ListItemText primary="Envoyer travailler un ouvrier" />
         </ListItem>
         <ListItem button onClick={selectAction("TAKE_MONEY")}>
-          <ListItemText primary="prendre un ou plusieurs écus" />
+          <ListItemText primary="Prendre un ou plusieurs écus" />
         </ListItem>
         <ListItem button onClick={selectAction("BUY_ACTION")}>
           <ListItemText primary="Acheter des actions supplémentaires" />
