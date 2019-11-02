@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import SelectActionContent from "./SelectActionContent";
+import EndTurnActionContent from "./EndTurnActionContent";
 
-function ActionDialog({ open, onClose, game }) {
+function ActionDialog({ open, onClose, game, playerId }) {
   const [type, setType] = useState();
 
   return (
@@ -20,7 +21,13 @@ function ActionDialog({ open, onClose, game }) {
           case "BUY_ACTION":
             return null;
           case "END_TURN":
-            return null;
+            return (
+              <EndTurnActionContent
+                onClose={onClose}
+                gameId={game.id}
+                playerId={playerId}
+              />
+            );
           default:
             return <SelectActionContent onActionSelect={setType} />;
         }
