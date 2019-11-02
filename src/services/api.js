@@ -30,3 +30,11 @@ export function findGameById(id) {
 export function createGame(newGame) {
   return Axios.post(`${getBackendUrl()}/games`, newGame);
 }
+
+export function playAction(gameId, playerId, action) {
+  return Axios.post(`${getBackendUrl()}/games/${gameId}/actions`, action, {
+    headers: {
+      "player-id": playerId
+    }
+  });
+}
