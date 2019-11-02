@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import { Typography, Box, Paper, Tooltip } from "@material-ui/core";
+import clsx from "clsx";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,14 +49,26 @@ const useStyles = makeStyles(theme => ({
     right: 0,
     top: 0,
     borderBottomLeftRadius: theme.shape.borderRadius
+  },
+  clickable: {
+    cursor: "pointer"
+  },
+  active: {
+    backgroundColor: theme.palette.secondary[300]
   }
 }));
 
-function Worker({ price, stone, wood, knowledge, tile }) {
+function Worker({ price, stone, wood, knowledge, tile, onClick, active }) {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.root}>
+    <Paper
+      className={clsx(classes.root, {
+        [classes.active]: active,
+        [classes.clickable]: onClick
+      })}
+      onClick={onClick}
+    >
       <Box
         display="flex"
         flexDirection="column"

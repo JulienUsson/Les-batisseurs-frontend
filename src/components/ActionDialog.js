@@ -5,6 +5,7 @@ import EndTurnActionContent from "./EndTurnActionContent";
 import BuyActionActionContent from "./BuyActionActionContent";
 import TakeMoneyActionContent from "./TakeMoneyActionContent";
 import TakeBuildingActionContent from "./TakeBuildingActionContent";
+import TakeWorkerActionContent from "./TakeWorkerActionContent";
 
 function ActionDialog({ open, onClose, game, playerId }) {
   const [type, setType] = useState();
@@ -30,7 +31,14 @@ function ActionDialog({ open, onClose, game, playerId }) {
               />
             );
           case "TAKE_WORKER":
-            return null;
+            return (
+              <TakeWorkerActionContent
+                onClose={handleClose}
+                gameId={game.id}
+                workers={game.workers}
+                playerId={playerId}
+              />
+            );
           case "SEND_WORKER":
             return null;
           case "TAKE_MONEY":
