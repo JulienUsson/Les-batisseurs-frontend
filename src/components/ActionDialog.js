@@ -6,9 +6,11 @@ import BuyActionActionContent from "./BuyActionActionContent";
 import TakeMoneyActionContent from "./TakeMoneyActionContent";
 import TakeBuildingActionContent from "./TakeBuildingActionContent";
 import TakeWorkerActionContent from "./TakeWorkerActionContent";
+import SendWorkerActionContent from "./SendWorkerActionContent";
 
 function ActionDialog({ open, onClose, game, playerId }) {
   const [type, setType] = useState();
+  const player = game.players.find(p => p.id === playerId);
 
   function handleClose() {
     onClose();
@@ -40,7 +42,15 @@ function ActionDialog({ open, onClose, game, playerId }) {
               />
             );
           case "SEND_WORKER":
-            return null;
+            return (
+              <SendWorkerActionContent
+                onClose={handleClose}
+                gameId={game.id}
+                workers={player.availableWorkers}
+                buildings={player.underConstructionBuildings}
+                playerId={playerId}
+              />
+            );
           case "TAKE_MONEY":
             return (
               <TakeMoneyActionContent
@@ -66,7 +76,13 @@ function ActionDialog({ open, onClose, game, playerId }) {
               />
             );
           default:
-            return <SelectActionContent onActionSelect={setType} />;
+            return (
+              <SelectActionContent
+                game={game}
+                player={player}
+                onActionSelect={setType}
+              />
+            );
         }
       })()}
     </Dialog>
