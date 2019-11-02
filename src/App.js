@@ -24,12 +24,24 @@ import Game from "./scenes/Game";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
+    "html, body": {
+      minHeight: "100vh"
+    },
+    "#root": {
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column"
+    },
     a: {
       textDecoration: "none"
     }
   },
   container: {
-    marginTop: theme.spacing(4)
+    display: "flex",
+    flexDirection: "column",
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(4),
+    flexGrow: 1
   }
 }));
 

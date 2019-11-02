@@ -9,6 +9,7 @@ import Building from "../components/Building";
 import Deck from "../components/Deck";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import ActionDialog from "../components/ActionDialog";
+import GameOver from "../components/GameOver";
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -50,6 +51,10 @@ function Game() {
         <CircularProgress color="secondary" size={80} />
       </Box>
     );
+  }
+
+  if (game.done) {
+    return <GameOver game={game} playerId={playerId} />;
   }
 
   const {
