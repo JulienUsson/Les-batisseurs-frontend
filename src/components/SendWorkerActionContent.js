@@ -24,8 +24,10 @@ function SendWorkerActionContent({
     try {
       await api.playAction(gameId, playerId, {
         type: "SEND_WORKER",
-        workerId,
-        buildingId
+        payload: {
+          workerId,
+          buildingId
+        }
       });
     } catch (e) {
       showError("Impossible d'effectuer cette action");

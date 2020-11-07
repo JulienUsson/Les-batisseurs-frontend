@@ -20,7 +20,9 @@ function BuyActionActionContent({ onClose, gameId, playerId }) {
     try {
       await api.playAction(gameId, playerId, {
         type: "BUY_ACTION",
-        numberOfActions: Number(numberOfActions)
+        payload: {
+          numberOfActions: Number(numberOfActions)
+        }
       });
     } catch (e) {
       showError("Impossible d'effectuer cette action");

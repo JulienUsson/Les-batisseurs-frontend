@@ -16,7 +16,9 @@ function TakeWorkerActionContent({ onClose, gameId, playerId, workers }) {
     try {
       await api.playAction(gameId, playerId, {
         type: "TAKE_WORKER",
-        workerId
+        payload: {
+          workerId
+        }
       });
     } catch (e) {
       showError("Impossible d'effectuer cette action");

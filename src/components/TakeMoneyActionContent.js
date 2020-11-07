@@ -20,7 +20,9 @@ function TakeMoneyActionContent({ onClose, gameId, playerId }) {
     try {
       await api.playAction(gameId, playerId, {
         type: "TAKE_MONEY",
-        numberOfActions: Number(numberOfActions)
+        payload: {
+          numberOfActions: Number(numberOfActions)
+        }
       });
     } catch (e) {
       showError("Impossible d'effectuer cette action");

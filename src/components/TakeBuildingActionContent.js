@@ -16,7 +16,9 @@ function TakeBuildingActionContent({ onClose, gameId, playerId, buildings }) {
     try {
       await api.playAction(gameId, playerId, {
         type: "TAKE_BUILDING",
-        buildingId
+        payload: {
+          buildingId
+        }
       });
     } catch (e) {
       showError("Impossible d'effectuer cette action");
