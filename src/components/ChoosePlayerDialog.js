@@ -22,7 +22,7 @@ function ChoosePlayerDialog({ open, onClose }) {
           mb={2}
           mt={1}
         >
-          {range(game.numberOfPlayers).map(n => (
+          {range(game.players?.length).map(n => (
             <Link key={n} to={`/games/${game.id}/${n + 1}`}>
               <Button variant="contained" size="large" color="primary">
                 Joueur {n + 1}
